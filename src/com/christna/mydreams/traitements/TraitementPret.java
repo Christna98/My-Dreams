@@ -26,7 +26,7 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
     Connection conn = null;
     ResultSet rs = null;
 
-    ArrayList<Pret> prets = new ArrayList<>();
+    ArrayList<Pret> prets = new ArrayList<Pret>();
     Pret pret = null;
 
     @Override
@@ -67,7 +67,7 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
             if (success == 1) {
                 JOptionPane.showMessageDialog(null, "Enregistrement reussi", "Message", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Enregistrement nonreussi", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Enregistrement non reussi", "Message", JOptionPane.ERROR_MESSAGE);
             }
 
             if (pst != null) {
@@ -77,7 +77,7 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
             if (conn != null) {
                 conn.close();
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(TraitementPret.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -191,14 +191,14 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
 
     @Override
     public void supression(int id) {
-        
+
         sb = new StringBuilder();
         sb.append("DELETE FROM prets ");
         sb.append("WHERE id = ?");
         conn = Database.getConnection();
 
         try {
-            
+
             pst = conn.prepareStatement(sb.toString());
 
             pst.setInt(1, id);
@@ -206,7 +206,7 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
             int rep = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer ce produit", "Message", JOptionPane.YES_NO_OPTION);
 
             if (rep == JOptionPane.YES_OPTION) {
-                
+
                 int n = pst.executeUpdate();
 
                 if (n == 1) {
@@ -223,6 +223,8 @@ public class TraitementPret implements InterfaceTraitement<Pret> {
             if (conn != null) {
                 conn.close();
             }
+
+            new TraitementRemboursement().afficher();
         } catch (SQLException ex) {
             Logger.getLogger(TraitementPret.class.getName()).log(Level.SEVERE, null, ex);
         }
