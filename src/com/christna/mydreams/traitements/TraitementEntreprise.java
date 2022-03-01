@@ -70,7 +70,7 @@ public class TraitementEntreprise implements InterfaceTraitement<Entreprise> {
             if (success == 1) {
                 JOptionPane.showMessageDialog(null, "Enregistrement reussi", "Message", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Enregistrement nonreussi", "Message", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Enregistrement non reussi", "Message", JOptionPane.ERROR_MESSAGE);
             }
 
             if (pst != null) {
@@ -171,11 +171,11 @@ public class TraitementEntreprise implements InterfaceTraitement<Entreprise> {
             if (rs != null) {
                 rs.close();
             }
-            
+
             if (pst != null) {
                 pst.close();
             }
-            
+
             if (conn != null) {
                 conn.close();
             }
@@ -255,7 +255,7 @@ public class TraitementEntreprise implements InterfaceTraitement<Entreprise> {
             pst = conn.prepareStatement(sb.toString());
             pst.setInt(1, id);
 
-            int rep = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer ce produit", "Message", JOptionPane.YES_NO_OPTION);
+            int rep = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer cette entreprise?", "Message", JOptionPane.YES_NO_OPTION);
 
             if (rep == JOptionPane.YES_OPTION) {
                 int n = pst.executeUpdate();
